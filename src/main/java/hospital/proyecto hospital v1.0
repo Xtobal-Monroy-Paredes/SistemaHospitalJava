@@ -1,0 +1,228 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
+/**
+ *
+ * @author ADMIN
+ */
+package hospital;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class SistemaHospital {
+
+    private ArrayList<Paciente> pacientes;
+    private ArrayList<Doctor> doctores;
+    private ArrayList<Cita> citas;
+    private Scanner sc;
+
+   public SistemaHospital() {
+
+    pacientes = new ArrayList<>();
+    doctores = new ArrayList<>();
+    citas = new ArrayList<>();
+
+    sc = new Scanner(System.in);
+    }
+
+    public void registrarPaciente() {
+
+        System.out.println("\n=== REGISTRO DE PACIENTE ===");
+
+        System.out.print("Ingrese ID: ");
+        int id = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("Ingrese nombre: ");
+        String nombre = sc.nextLine();
+
+        System.out.print("Ingrese edad: ");
+        int edad = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("Ingrese DNI: ");
+        String dni = sc.nextLine();
+
+        System.out.print("Ingrese enfermedad: ");
+        String enfermedad = sc.nextLine();
+
+        Paciente nuevoPaciente = new Paciente(
+                id,
+                nombre,
+                edad,
+                dni,
+                enfermedad
+        );
+
+        pacientes.add(nuevoPaciente);
+
+        System.out.println("Paciente registrado correctamente.");
+    }
+
+    public void mostrarPacientes() {
+
+        System.out.println("\n=== LISTA DE PACIENTES ===");
+
+        if (pacientes.isEmpty()) {
+
+            System.out.println("No hay pacientes registrados.");
+
+        } else {
+
+            for (Paciente p : pacientes) {
+                p.mostrarDatos();
+            }
+        }
+    }
+
+    public void buscarPaciente() {
+
+        System.out.print("\nIngrese DNI del paciente: ");
+
+        String dniBuscar = sc.nextLine();
+
+        boolean encontrado = false;
+
+        for (Paciente p : pacientes) {
+
+            if (p.getDni().equals(dniBuscar)) {
+
+                System.out.println("\nPaciente encontrado:");
+                p.mostrarDatos();
+
+                encontrado = true;
+            }
+        }
+
+        if (!encontrado) {
+            System.out.println("Paciente no encontrado.");
+        }
+    }
+
+    public void registrarDoctor() {
+
+        System.out.println("\n=== REGISTRO DE DOCTOR ===");
+
+        System.out.print("Ingrese código: ");
+        int codigo = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("Ingrese nombre: ");
+        String nombre = sc.nextLine();
+
+        System.out.print("Ingrese especialidad: ");
+        String especialidad = sc.nextLine();
+
+        Doctor nuevoDoctor = new Doctor(
+                codigo,
+                nombre,
+                especialidad
+        );
+
+        doctores.add(nuevoDoctor);
+
+        System.out.println("Doctor registrado correctamente.");
+    }
+
+    public void mostrarDoctores() {
+
+        System.out.println("\n=== LISTA DE DOCTORES ===");
+
+        if (doctores.isEmpty()) {
+
+            System.out.println("No hay doctores registrados.");
+
+        } else {
+
+            for (Doctor d : doctores) {
+                d.mostrarDoctor();
+            }
+        }
+    }
+
+    private Paciente buscarPacientePorDni(String dni) {
+
+        for (Paciente p : pacientes) {
+
+            if (p.getDni().equals(dni)) {
+
+                return p;
+            }
+        }
+
+        return null;
+    }
+
+
+
+    private Doctor buscarDoctorPorCodigo(int codigo) {
+
+        for (Doctor d : doctores) {
+
+            if (d.getCodigo() == codigo) {
+
+                return d;
+            }
+        }
+
+        return null;
+    }
+
+    public void menu() {
+
+        int opcion;
+
+        do {
+
+            System.out.println("\n=================================");
+            System.out.println("      SISTEMA HOSPITALARIO");
+            System.out.println("=================================");
+            System.out.println("1. Registrar paciente");
+            System.out.println("2. Mostrar pacientes");
+            System.out.println("3. Buscar paciente");
+            System.out.println("4. Registrar doctor");
+            System.out.println("5. Mostrar doctores");
+            System.out.println("6. Salir");
+
+            System.out.print("Seleccione una opción: ");
+
+            opcion = sc.nextInt();
+            sc.nextLine();
+
+            switch (opcion) {
+
+                case 1:
+                    registrarPaciente();
+                    break;
+
+                case 2:
+                    mostrarPacientes();
+                    break;
+
+                case 3:
+                    buscarPaciente();
+                    break;
+
+                case 4:
+                    registrarDoctor();
+                    break;
+
+                case 5:
+                    mostrarDoctores();
+                    break;
+
+                case 6:
+                    System.out.println("\nSaliendo del sistema...");
+                    break;
+
+                default:
+                    System.out.println("\nOpción inválida.");
+            }
+
+        
+        } while (opcion != 6);
+    } 
+} 
