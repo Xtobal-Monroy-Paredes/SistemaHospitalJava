@@ -50,6 +50,8 @@ public class Login extends javax.swing.JFrame {
 
         lblPassword.setText("CONTRASEÑA");
 
+        txtUsuario.addActionListener(this::txtUsuarioActionPerformed);
+
         btnIngresar.setText("INGRESAR");
         btnIngresar.addActionListener(this::btnIngresarActionPerformed);
 
@@ -131,6 +133,10 @@ if (sistema.validarUsuario(usuario, contraseña)) {
 }
         
     }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuarioActionPerformed
 
     /**
      * @param args the command line arguments

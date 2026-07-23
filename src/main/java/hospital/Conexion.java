@@ -7,11 +7,11 @@ import java.sql.SQLException;
 public class Conexion {
 
     private static final String URL =
-        "jdbc:mysql://127.0.0.1:3306/hospital?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=America/Lima";
+        "jdbc:mysql://sakura.proxy.rlwy.net:48417/railway?allowPublicKeyRetrieval=true&useSSL=true&serverTimezone=America/Lima";
 
     private static final String USUARIO = "root";
 
-    private static final String PASSWORD = "12345";
+    private static final String PASSWORD = "aEqaTaSDCtUAKiCITXllQmllQRdrWtUN";
 
     public static Connection conectar() {
 
@@ -19,7 +19,7 @@ public class Conexion {
 
             Connection con = DriverManager.getConnection(URL, USUARIO, PASSWORD);
 
-            System.out.println("Conexión exitosa a MySQL.");
+            System.out.println("Conexión exitosa a Railway.");
 
             return con;
 
@@ -28,9 +28,6 @@ public class Conexion {
             System.out.println("Error al conectar: " + e.getMessage());
 
             return null;
-
         }
-
     }
-
 }
